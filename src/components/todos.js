@@ -1,16 +1,20 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-
+import { connect } from 'react-redux';
 import Todo from './todo';
 import AddTodo from './addtodo';
 import store from '../store';
+import { Button, Card, Form } from 'react-bootstrap';
+
 const axios = require('axios');
 
-const selectTodos = state => state.todos
 
-const Todos = () => {
-    const todos = useSelector(selectTodos);
-    const handleDelete = todo => {
+class Todos extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    handleDelete(todo) {
         axios.post('http://localhost:8080/todo/remove', todo)
             .then(response => {
                 console.log(response);
@@ -18,14 +22,11 @@ const Todos = () => {
             }
             );
 
-
     }
 
-    const handleDone = todo => {
-        todo = {
-            ...todo,
-            isDone: !todo.isDone
-        }
+    handleDone = (todo) => {
+        todo.isDone = !todo.isDone;
+        console.log("todo innhandledone" + todo.isDone);
         axios.post('http://localhost:8080/todo/update', todo)
             .then(response => {
                 console.log(response);
@@ -33,24 +34,35 @@ const Todos = () => {
             });
     }
 
+    render() {
+        return (
 
-    return (
-        <div className="table">
-            <div>
-                {todos.map((todo, index) => (
-                    <div key={todo.id}>
-                        <Todo index={index + 1} todo={todo} fooDelete={handleDelete} fooDoneDone={handleDone} />
-                    </div>
-                ))}
+            <div className="table">
                 <div>
-                    <div colSpan="4" className="text-center">
-                        <AddTodo
-                        />
+                    <div>
+                        <div colSpan="4" className="text-center">
+                            <AddTodo
+                            />
+                        </div>
                     </div>
+                    {this.props.todos.map((todo, index) => (
+                        <div key={todo.id}>
+                            <Card>
+                                <Todo index={index + 1} todo={todo} fooDelete={this.handleDelete} fooDoneDone={this.handleDone} />
+                            </Card>
+                        </div>
+                    ))}
+
                 </div>
             </div>
-        </div>
-    );
+
+        )
+
+    }
 }
 
-export default Todos;
+const mapStateToProps = state => ({
+    todos: state.todos
+});
+
+export default connect(mapStateToProps)(Todos);
