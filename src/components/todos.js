@@ -15,7 +15,7 @@ class Todos extends React.Component {
     }
 
     handleDelete(todo) {
-        axios.post('http://localhost:8080/dropwizard-mongodb-ms/taskManager/remove', todo)
+        axios.delete(`http://localhost:8080/dropwizard-mongodb-ms/taskManager/remove/${todo.id}`)
             .then(response => {
                 console.log(response);
                 store.dispatch({ type: 'todos/todoDeleted', payload: todo });
@@ -26,7 +26,6 @@ class Todos extends React.Component {
 
     handleDone = (todo) => {
         todo.isDone = !todo.isDone;
-        console.log("todo innhandledone" + todo.isDone);
         axios.post('http://localhost:8080/dropwizard-mongodb-ms/taskManager/update', todo)
             .then(response => {
                 console.log(response);
