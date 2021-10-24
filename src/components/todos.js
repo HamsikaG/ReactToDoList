@@ -36,7 +36,7 @@ class Todos extends React.Component {
     render() {
         return (
 
-            <div className="table">
+            <div style={{ display: "flex", flexDirection: "column", padding: 15 }}>
                 <div>
                     <div>
                         <div colSpan="4" className="text-center">
@@ -44,16 +44,23 @@ class Todos extends React.Component {
                             />
                         </div>
                     </div>
-                    {this.props.todos.map((todo, index) => (
-                        <div key={todo.id}>
-                            <Card>
-                                <Todo index={index + 1} todo={todo} fooDelete={this.handleDelete} fooDoneDone={this.handleDone} />
-                            </Card>
+                    <Card>
+                        <div style={{ margin: 15 }}>
+
+                            {this.props.todos.map((todo, index) => (
+                                <div key={todo.id}>
+                                    <Card>
+                                        <Todo index={index + 1} todo={todo} fooDelete={this.handleDelete} fooDoneDone={this.handleDone} />
+                                    </Card>
+                                </div>
+                            ))}
                         </div>
-                    ))}
+                    </Card>
 
                 </div>
             </div>
+
+
 
         )
 

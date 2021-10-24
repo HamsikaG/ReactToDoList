@@ -1,45 +1,39 @@
 import React, { Component } from 'react';
 import store from '../store';
+import { Button, Card, Form } from 'react-bootstrap';
 
 const axios = require('axios');
 
 class AddTodo extends Component {
-    state = {
-        id: "",
-        isDone: "",
-        todoDescription: "",
-        todoFinishDate: ""
-    }
 
-    componentDidMount() {
 
-    }
-
-    handleChange = (e) => {
+    handleDescriptionChange = (e) => {
         //Updating local component state
         this.setState({
-            value: e.target.value
+            description: e.target.value
         });
     }
 
+    handleDateChange = (e) => {
+        //Updating local component state
+        this.setState({
+            date: e.target.value
+        });
+    }
     clearInput = () => {
         //Clear existing value in input
         document.getElementById("todoValue").value = "";
-
         //Updating local component state
-        this.setState({ value: "" });
+        this.setState({ description: "" });
+        this.setState({ date: "" });
     }
 
     addTodo = () => {
-
         const data = {
-            todoDescription: this.state.value,
-            todoFinishDate: 'today',
+            todoDescription: this.state.description,
+            todoFinishDate: this.state.date,
             isDone: false
         };
-
-
-
 
         axios.post('http://localhost:8080/dropwizard-mongodb-ms/taskManager/save', data)
             .then(response => {
@@ -52,12 +46,22 @@ class AddTodo extends Component {
 
     render() {
         return (
-            <div className="input-group mb-3">
-                <input type="text" className="form-control" id="todoValue" placeholder="ToDo" onChange={this.handleChange} />
-                <div className="input-group-append">
-                    <button onClick={this.addTodo} className="btn btn-outline-secondary" type="button" id="button-addon2">Add New ToDo</button>
+            <Card>
+                <div style={{ display: "flex", flexDirection: "column", padding: 15 }}>
+                    <div style={{ textAlign: "left" }}>
+                        <h3>Description</h3>
+                        <input type="text" className="form-control" id="todoValue" placeholder="Task" onChange={this.handleDescriptionChange} />
+                    </div>
+                    <div style={{ textAlign: "left", paddingTop: 15 }}>
+                        <h3>Date</h3>
+                        <input type="text" className="form-control" id="todoValue" placeholder="Due Date" onChange={this.handleDateChange} />
+                    </div>
+                    <div style={{ textAlign: "right", padding: 15 }}>
+                        <button onClick={this.addTodo} className="btn btn-success" type="button" id="button-addon2">Save</button>
+                    </div>
                 </div>
-            </div>
+            </Card>
+
         );
     }
 }
