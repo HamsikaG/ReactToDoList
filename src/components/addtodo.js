@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import store from '../store';
-import { Button, Card, Form } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 const axios = require('axios');
 
