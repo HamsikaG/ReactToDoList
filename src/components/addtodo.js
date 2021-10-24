@@ -23,6 +23,7 @@ class AddTodo extends Component {
     clearInput = () => {
         //Clear existing value in input
         document.getElementById("todoValue").value = "";
+        document.getElementById("todoDateValue").value = "";
         //Updating local component state
         this.setState({ description: "" });
         this.setState({ date: "" });
@@ -54,7 +55,7 @@ class AddTodo extends Component {
                     </div>
                     <div style={{ textAlign: "left", paddingTop: 15 }}>
                         <h3>Date</h3>
-                        <input type="text" className="form-control" id="todoValue" placeholder="Due Date" onChange={this.handleDateChange} />
+                        <input type="text" className="form-control" id="todoDateValue" placeholder="Due Date" onChange={this.handleDateChange} />
                     </div>
                     <div style={{ textAlign: "right", padding: 15 }}>
                         <button onClick={this.addTodo} className="btn btn-success" type="button" id="button-addon2">Save</button>
