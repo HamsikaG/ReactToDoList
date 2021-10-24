@@ -41,10 +41,10 @@ class AddTodo extends Component {
 
 
 
-        axios.post('http://localhost:8080/todo/save', data)
+        axios.post('http://localhost:8080/dropwizard-mongodb-ms/todo/save', data)
             .then(response => {
                 console.log(response);
-                store.dispatch({ type: 'todos/todoAdded', payload: response.data })
+                store.dispatch({ type: 'todos/todoAdded', payload: data })
             }
             );
         this.clearInput();
