@@ -1,15 +1,20 @@
 const initialState = {
   todos: [{
-    id: 23,
-    todoDescription: "todoDescription",
-    todoFinishDate: "todoFinishDate",
-    isDone: false
   }]
 }
 
 export default function appReducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
+    case 'todos/populateTodos': {
+      const { data } = payload;
+      return {
+        ...state,
+        todos: [
+          ...data
+        ]
+      }
+    }
     case 'todos/todoAdded': {
       const { id, todoDescription, todoFinishDate, isDone } = payload;
       return {
