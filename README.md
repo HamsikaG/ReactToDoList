@@ -27,8 +27,4 @@ You will also see any lint errors in the console.
 
 Images:
 
-![Screen Shot 2021-10-25 at 6 04 34 PM](https://user-images.githubusercontent.com/23443276/138782891-a91877ff-fe17-47d9-b60f-cc932a9f44f1.png)
-
-![Screen Shot 2021-10-25 at 6 04 41 PM](https://user-images.githubusercontent.com/23443276/138782903-4f181a1f-0654-4d06-84fa-f2775e01d112.png)
-
-
+![Screen Shot 2021-10-25 at 6 09 10 PM](https://user-images.githubusercontent.com/23443276/138782949-f557b112-4e24-4a77-acc9-6eda1f311910.png)
