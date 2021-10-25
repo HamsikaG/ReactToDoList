@@ -13,7 +13,6 @@ class Todos extends React.Component {
     handleDelete(todo) {
         axios.delete(`http://localhost:8080/dropwizard-mongodb-ms/taskManager/${todo.id}`)
             .then(response => {
-                console.log(response);
                 store.dispatch({ type: 'todos/todoDeleted', payload: todo });
             }
             );
@@ -24,7 +23,6 @@ class Todos extends React.Component {
         todo.isDone = !todo.isDone;
         axios.post('http://localhost:8080/dropwizard-mongodb-ms/taskManager/update', todo)
             .then(response => {
-                console.log(response);
                 store.dispatch({ type: 'todos/todoToggled', payload: todo.id })
             });
     }
@@ -44,9 +42,9 @@ class Todos extends React.Component {
                         <Card>
                             <div style={{ margin: 15 }}>
                                 {todos.map((todo, index) => (
-                                    <div key={todo.id}>
+                                    <div key={index}>
                                         <Card>
-                                            <Todo index={index + 1} todo={todo} fooDelete={this.handleDelete} fooDoneDone={this.handleDone} />
+                                            <Todo index={index} todo={todo} fooDelete={this.handleDelete} fooDoneDone={this.handleDone} />
                                         </Card>
                                     </div>
                                 ))}
