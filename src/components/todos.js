@@ -11,7 +11,7 @@ const axios = require('axios');
 class Todos extends React.Component {
 
     handleDelete(todo) {
-        axios.delete(`http://localhost:8080/dropwizard-mongodb-ms/taskManager/remove/${todo.id}`)
+        axios.delete(`http://localhost:8080/dropwizard-mongodb-ms/taskManager/${todo.id}`)
             .then(response => {
                 console.log(response);
                 store.dispatch({ type: 'todos/todoDeleted', payload: todo });
