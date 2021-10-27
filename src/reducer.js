@@ -1,6 +1,5 @@
 const initialState = {
-  todos: [{
-  }]
+  todos: []
 }
 
 export default function appReducer(state = initialState, action) {

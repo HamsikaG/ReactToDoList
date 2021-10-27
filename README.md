@@ -1,7 +1,10 @@
 # Getting Started with Todo React App
 
+<pre>
 Clone https://github.com/HamsikaG/ReactToDoList
+
 cd ReactToDoList
+</pre>
 
 ## Build and tag the Docker image: 
 docker build -t react-todo-app .
